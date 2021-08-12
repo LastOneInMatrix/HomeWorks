@@ -15,14 +15,14 @@ type MessagePropsType = {
 export function Message({ avatar, name, message, time}: MessagePropsType) {
     return (
         <div className={style.mainBlock}>
-            <img src={avatar} />
+            <img className={style.avatar} src={avatar} alt={`${name} avatar`} />
 
             <div className={style.angle}></div>
 
             <div className={style.messageBlock}>
-                <div className={style.name}></div>
-                <div className={style.message}></div>
-                <div className={style.time}></div>
+                <div className={style.name}>{name}</div>
+                <div className={style.message}>{message}</div>
+                <div className={style.time}>{time}</div>
             </div>
         </div>
     )

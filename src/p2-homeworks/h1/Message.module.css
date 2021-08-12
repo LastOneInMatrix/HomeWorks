@@ -2,23 +2,40 @@
     display: flex;
     align-items: flex-end;
     margin: 10px;
+    background: blanchedalmond;
 }
-.messageBlock {
 
+.avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.messageBlock {
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    background-color: rgba(29, 145, 210, 0.2);
 }
 
 .angle {
-
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 0 0, rgba(0, 0, 0, 0) 22px, rgba(29, 145, 210, 0.2) 0px);
 }
 
 .name {
-
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .message {
-
+    min-width: 150px;
+    max-width: 250px;
+    word-wrap: break-word;
 }
 
 .time {
+    display: flex;
+    justify-content: flex-end;
 
 }
