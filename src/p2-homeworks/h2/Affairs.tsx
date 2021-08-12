@@ -1,38 +1,37 @@
-import React from 'react'
+import React, {MouseEvent} from 'react'
 import Affair from './Affair'
-import {AffairType} from './HW2'
+import {AffairType, FilterType} from './HW2'
 
 type AffairsPropsType = { // need to fix any
-    data: any
-    setFilter: any
-    deleteAffairCallback: any
+    data: Array<AffairType>
+    setFilter: (filter: FilterType) => void
+    deleteAffairCallback: (_id: number) => void
 }
 
-function Affairs(props: AffairsPropsType) {
+const Affairs = React.memo(function Affairs(props: AffairsPropsType) {
     const mappedAffairs = props.data.map((a: AffairType) => (
         <Affair // should work
             key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
             affair={a}
             deleteAffairCallback={props.deleteAffairCallback}
+            setFilter={props.setFilter}
         />
     ))
-
-    const setAll = () => {} // need to fix
-    const setHigh = () => {}
-    const setMiddle = () => {}
-    const setLow = () => {}
-
+    //'low' | 'middle' |  'high'
+    const setFilterHandler = (e: MouseEvent<HTMLButtonElement>) => {props.setFilter((e.currentTarget.innerHTML).toLowerCase() as FilterType)} // need to fix
+    //@ts-ignore
+    const setFilterHandler2 = (e: MouseEvent<HTMLButtonElement>) => {props.setFilter((e.currentTarget.getAttribute('data-filter')).toLowerCase() as FilterType)}
     return (
         <div>
 
             {mappedAffairs}
 
-            <button onClick={setAll}>All</button>
-            <button onClick={setHigh}>High</button>
-            <button onClick={setMiddle}>Middle</button>
-            <button onClick={setLow}>Low</button>
+            <button data-filter='all' onClick={setFilterHandler}>All</button>
+            <button data-filter='high' onClick={setFilterHandler}>High</button>
+            <button data-filter='middle' onClick={setFilterHandler}>Middle</button>
+            <button data-filter='low' onClick={setFilterHandler2}>Low</button>
         </div>
     )
-}
+})
 
 export default Affairs
