@@ -11,7 +11,7 @@ function Affair({affair, deleteAffairCallback, ...props}: AffairPropsType) {
     const deleteCallback = () => {
         deleteAffairCallback(affair._id);
     };
-    console.log(affair.priority)
+
     const color = (priority: FilterType) => {
         switch (priority) {
             case "middle":

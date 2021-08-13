@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {ChangeEvent} from 'react'
 import s from './Greeting.module.css'
 
 type GreetingPropsType = {
-    name: any // need to fix any
-    setNameCallback: any // need to fix any
-    addUser: any // need to fix any
-    error: any // need to fix any
+    name: string // need to fix any
+    setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void // need to fix any
+    addUser: () => void// need to fix any
+    error: string // need to fix any
     totalUsers: any // need to fix any
 }
 
@@ -17,9 +17,13 @@ const Greeting: React.FC<GreetingPropsType> = (
 
     return (
         <div>
-            <input value={name} onChange={setNameCallback} className={inputClass}/>
-            <span>{error}</span>
-            <button onClick={addUser}>add</button>
+            <div className={s.form}>
+                <input value={name} placeholder={error ? error : name} onChange={setNameCallback} className={ error ? inputClass : s.someClassForInput}/>
+                <button onClick={addUser}>add</button>
+            </div>
+
+            {error && <span>{`Ошибка: ${error} `}</span>}
+
             <span>{totalUsers}</span>
         </div>
     )
