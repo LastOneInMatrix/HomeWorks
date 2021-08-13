@@ -5,8 +5,9 @@ import SuperButton from './common/c2-SuperButton/SuperButton'
 import SuperCheckbox from './common/c3-SuperCheckbox/SuperCheckbox'
 
 function HW4() {
-    const [text, setText] = useState<string>('')
-    const error = text ? '' : 'error'
+    const [text, setText] = useState<string>('');
+
+    const error = !text ? 'error' : ''
 
     const showAlert = () => {
         if (error) {
@@ -18,7 +19,6 @@ function HW4() {
 
     const [checked, setChecked] = useState<boolean>(false)
     const testOnChange = (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked)
-
     return (
         <div>
             <hr/>
@@ -44,11 +44,13 @@ function HW4() {
                 </SuperButton>
 
                 <SuperButton
-                    red // пропсу с булевым значением не обязательно указывать true
+                    testProps // пропсу с булевым значением не обязательно указывать true
                     onClick={showAlert}
                 >
                     delete {/*// название кнопки попадёт в children*/}
                 </SuperButton>
+
+
 
                 <SuperButton disabled>
                     disabled
